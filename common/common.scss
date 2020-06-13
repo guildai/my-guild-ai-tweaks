@@ -116,5 +116,11 @@ ul.guild-docs-commands-section {
 .nav-pills > li.active > a,
 .nav-pills > li > a.active {
   color: #fff;
-  background: #e45735 !important;
+  background: #ff505a !important;
+}
+
+// Nothing between breadcrumbs.
+
+ol.category-breadcrumb {
+  border: none;
 }
