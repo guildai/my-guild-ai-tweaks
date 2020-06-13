@@ -4,7 +4,7 @@
 
     api.decorateCooked($elem => {
         run.scheduleOnce("actions", () => {
-            
+
             // Command help formatting:
             // - add 'guild-cmd-option' class for styling
             const guildCmdMarker = $elem.find("[data-guild-cmd='true']");
@@ -17,14 +17,14 @@
                     });
                 }
             }
-            
+
             // Apply CSS class via data-guild-class attr.
             $elem.find("[data-guild-class]").each(function() {
                 const marker = $(this);
                 marker.children().addClass(marker.attr("data-guild-class"));
                 marker.removeAttr("data-guild-class");
             });
-            
+
             // Apply list item icons.
             $elem.find("[data-guild-li-icon]").each(function() {
                 const marker = $(this);
@@ -36,4 +36,24 @@
             });
         });
     }, {id: "guild-cmd-tweaks"});
+
+    api.createWidget("category-header-widget", {
+        tagName: "div",
+        html(attrs, state) {
+            if(/^\/c\//.test(window.location.pathname)) {
+                const controller = container.lookup("controller:navigation/category");
+                const category = controller.get("category");
+                return h("div.category-header", [
+                    h("h1", category.name),
+                    h("p", {innerHTML: category.description})
+                ]);
+            }
+        }
+    });
+</script>
+
+<script
+  type="text/x-handlebars"
+  data-template-name="/connectors/before-topic-list/category-header-widget">
+  {{ mount-widget widget="category-header-widget" }}
 </script>

@@ -50,14 +50,17 @@ pre code.lang-output {
   background-color: #e2e2e2;
 }
 
-// Tweak to code-copy button format.
+// Tweak button format.
 
 .copy-codeblocks .copy-cmd {
   border: none;
   border-radius: 2px;
 }
 
-img.logo-small {
+.btn,
+img.logo-small,
+.nav-pills > li > a,
+.select-kit.dropdown-select-box .dropdown-select-box-header {
   border-radius: 2px;
 }
 
@@ -74,10 +77,10 @@ img.logo-small {
 ul.guild-docs-section {
   list-style-type: none;
   padding-left: 0;
-  
+
   li {
     line-height: 1.8;
-    
+
     svg {
       color: desaturate($tertiary, 100%);
       margin-right: 0.3em;
@@ -89,7 +92,7 @@ ul.guild-docs-commands-section {
   list-style-type: none;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(50%, 1fr));
-  
+
   li {
     line-height: inherit;
   }
@@ -106,4 +109,12 @@ ul.guild-docs-commands-section {
 .select-kit.dropdown-select-box .dropdown-select-box-header,
 .list-controls .btn {
   background-color: #f6f6f6;
+}
+
+// Reinstate highlights for selected nav option.
+
+.nav-pills > li.active > a,
+.nav-pills > li > a.active {
+  color: #fff;
+  background: #e45735 !important;
 }
