@@ -1,0 +1,109 @@
+// Don't show suggestion to create new topic.
+
+.footer-message {
+  display: none;
+}
+
+// Extend page to align with header width.
+
+#main-outlet {
+  max-width: 1024px;
+}
+
+// Bring page up slightly.
+
+#main {
+  padding-top: 110px;
+  padding-bottom: 110px;
+}
+
+// Restore h3 bold formatting.
+
+h3 {
+  font-weight: 700;
+}
+
+// Reduce size of code font.
+
+code, kbd, pre, samp {
+  font-size: 13.5px;
+}
+
+// Code block format: darken, round corners, padding.
+
+pre code {
+  border-radius: 4px;
+  padding: 0.55em 0.7em 0.4em;
+  background: #f6f6f6;
+}
+
+// Show 'command' examples with dark theme.
+
+pre code.lang-command {
+  color: #FFF;
+  background-color: #999;
+}
+
+// Show 'output' examples with darker background.
+
+pre code.lang-output {
+  background-color: #e2e2e2;
+}
+
+// Tweak to code-copy button format.
+
+.copy-codeblocks .copy-cmd {
+  border: none;
+  border-radius: 2px;
+}
+
+img.logo-small {
+  border-radius: 2px;
+}
+
+// Command help option format.
+
+.cooked table td.guild-cmd-option {
+  white-space: nowrap;
+  padding-right: 8px;
+  vertical-align: baseline;
+}
+
+// Guild document section.
+
+ul.guild-docs-section {
+  list-style-type: none;
+  padding-left: 0;
+  
+  li {
+    line-height: 1.8;
+    
+    svg {
+      color: desaturate($tertiary, 100%);
+      margin-right: 0.3em;
+    }
+  }
+}
+
+ul.guild-docs-commands-section {
+  list-style-type: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(50%, 1fr));
+  
+  li {
+    line-height: inherit;
+  }
+}
+
+// Header formatting.
+
+.list-controls .combo-box .combo-box-header {
+  border: 1px solid #e9e9e9;
+}
+
+// Header buttons.
+
+.select-kit.dropdown-select-box .dropdown-select-box-header,
+.list-controls .btn {
+  background-color: #f6f6f6;
+}

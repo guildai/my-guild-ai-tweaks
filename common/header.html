@@ -1,0 +1,39 @@
+<script type="text/discourse-plugin" version="0.8">
+    const { run } = Ember;
+    const { iconHTML } = require("discourse-common/lib/icon-library");
+
+    api.decorateCooked($elem => {
+        run.scheduleOnce("actions", () => {
+            
+            // Command help formatting:
+            // - add 'guild-cmd-option' class for styling
+            const guildCmdMarker = $elem.find("[data-guild-cmd='true']");
+            if (guildCmdMarker.length) {
+                const optionsTable = $elem.find("#options").nextAll(".md-table");
+                if (optionsTable.length) {
+                    optionsTable.find("thead").remove();
+                    optionsTable.find("tr").each(function() {
+                        $(this).find("td").first().addClass("guild-cmd-option");
+                    });
+                }
+            }
+            
+            // Apply CSS class via data-guild-class attr.
+            $elem.find("[data-guild-class]").each(function() {
+                const marker = $(this);
+                marker.children().addClass(marker.attr("data-guild-class"));
+                marker.removeAttr("data-guild-class");
+            });
+            
+            // Apply list item icons.
+            $elem.find("[data-guild-li-icon]").each(function() {
+                const marker = $(this);
+                const icon = iconHTML(marker.attr("data-guild-li-icon"));
+                marker.find("li").each(function() {
+                    $(this).prepend(icon);
+                });
+                marker.removeAttr("data-guild-li-icon");
+            });
+        });
+    }, {id: "guild-cmd-tweaks"});
+</script>
