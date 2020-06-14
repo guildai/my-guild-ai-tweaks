@@ -23,7 +23,7 @@
             // Apply CSS class via data-guild-class attr.
             $elem.find("[data-guild-class]").each(function() {
                 const marker = $(this);
-                marker.children().addClass(marker.attr("data-guild-class"));
+                marker.addClass(marker.attr("data-guild-class"));
                 marker.removeAttr("data-guild-class");
             });
 
