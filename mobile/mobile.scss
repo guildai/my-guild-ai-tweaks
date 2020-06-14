@@ -4,3 +4,11 @@
   padding-top: 74px;
   padding-bottom: 74px;
 }
+
+#main-outlet {
+  width: calc(100% - 70px);
+}
+
+header.d-header .panel {
+  margin-top: -3px;
+}
