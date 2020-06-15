@@ -138,3 +138,45 @@ ol.category-breadcrumb {
 .custom-header-links .headerLink a {
   color: #283593;
 }
+
+// Onebox: GitHub link style.
+
+.d-toc-regular .d-toc-ignore {
+  font-size: unset;
+  font-weight: normal;
+}
+
+// Onebox: border and margin.
+
+aside.onebox {
+  all: unset;
+}
+
+pre.onebox {
+  margin: 0;
+  
+  code ol.lines {
+    margin: 0 0 0 20px;
+    padding-inline-start: 20px;
+    
+    li {
+      border: none;
+      margin-left: 0;
+    }
+  }
+}
+
+// Onebox: code background consistent with other code.
+
+pre.onebox code {
+  background-color: #f6f6f6;
+}
+
+// Onebox: lighten GitHub icon
+
+aside.onebox.githubblob .source {
+  opacity: 0.7;
+   a {
+     color: #666;
+   }
+}
