@@ -36,6 +36,13 @@
                 });
                 marker.removeAttr("data-guild-li-icon");
             });
+            
+            // Add stylable command prompt element to command code blocks.
+            $elem.find("code.lang-command").each(function() {
+                
+                console.log("!!!!!!!!!!!!!!!!!");
+                $(this).parent().prepend($('<span />').addClass("command-line-prompt").html("$"));
+            })
         });
     }, {id: "guild-cmd-tweaks"});
 

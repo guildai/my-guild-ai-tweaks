@@ -1,3 +1,56 @@
+// Custom fonts.
+
+html {
+  font-family: 'Roboto',sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 500;
+}
+
+b, strong {
+  font-weight: 500;
+}
+
+// Header sizes.
+
+h1, #topic-title h1 {
+  font-size: 2em;
+}
+
+h2, .cooked h2, .d-editor-preview h2 {
+  font-size: 1.6em;
+}
+
+h3, .cooked h3, .d-editor-preview h3 {
+  font-size: 1.4em;
+}
+
+h4, .cooked h4, .d-editor-preview h4 {
+  font-size: 1.2em;
+}
+
+h5, .cooked h5, .d-editor-preview h5 {
+  font-size: 1.1em;
+}
+
+h6, .cooked h6, .d-editor-preview h6 {
+  font-size: 1em;
+}
+
+// Restore bold to topic title.
+
+#topic-title h1 a {
+  font-weight: 500;
+}
+
+// Title edit icon.
+
+#topic-title a.edit-topic .d-icon {
+  color: $primary-high;
+  font-size: 0.6em;
+}
+
 // Don't show suggestion to create new topic.
 
 .footer-message {
@@ -17,15 +70,10 @@
   padding-bottom: 110px;
 }
 
-// Restore h3 bold formatting.
-
-h3 {
-  font-weight: 700;
-}
-
 // Reduce size of code font.
 
 code, kbd, pre, samp {
+  font-family: 'Roboto Mono',monospace;
   font-size: 13.5px;
 }
 
@@ -33,22 +81,17 @@ code, kbd, pre, samp {
 
 pre code {
   border-radius: 3px;
-  padding: 0.55em 0.7em 0.4em;
   background: #f6f6f6;
 }
 
-// Show 'command' examples with dark theme.
+// Show 'command' and 'output' examples with dark theme.
 
-pre code.lang-command {
-  color: #FFF;
-  background-color: #999;
-}
-
-// Show 'output' examples with darker background.
-
+pre code.lang-command,
 pre code.lang-output {
-  background-color: #e2e2e2;
+  color: #fff;
+  background-color: #888;
 }
+
 
 // Tweak button format.
 
@@ -62,6 +105,7 @@ img.logo-small,
 .nav-pills > li > a,
 .select-kit.dropdown-select-box .dropdown-select-box-header {
   border-radius: 2px;
+  opacity: 0.7;
 }
 
 // Command help option format.
@@ -128,12 +172,12 @@ ol.category-breadcrumb {
 // Captions - denoted using data-guild-class="caption"
 
 .caption {
-  color: #646464;
+  color: $primary-high;
   font-style: italic;
   padding: 0 0.67em;
 }
 
-// Header links color.
+// Header links color to Guild logo blue.
 
 .custom-header-links .headerLink a {
   color: #283593;
@@ -175,8 +219,34 @@ pre.onebox code {
 // Onebox: lighten GitHub icon
 
 aside.onebox.githubblob .source {
-  opacity: 0.7;
+  opacity: 0.8;
    a {
      color: #666;
    }
+}
+
+// TOC active styling.
+
+.d-toc-regular .d-toc .d-toc-item.d-toc-active a {
+  text-shadow: unset;
+  font-weight: 500;
+}
+
+// Command line prompt.
+
+.command-line-prompt {
+  position: absolute;
+  top: 0.5em;
+  left: 0.7em;
+  color: #ddd;
+}
+
+pre code.lang-command {
+  padding-left: 2em;
+}
+
+// Hide suggested topics message.
+
+.suggested-topics-message {
+  display: none;
 }
