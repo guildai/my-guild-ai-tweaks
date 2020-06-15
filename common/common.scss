@@ -125,10 +125,16 @@ ol.category-breadcrumb {
   border: none;
 }
 
-// Captions
+// Captions - denoted using data-guild-class="caption"
 
 .caption {
-  color: #777;
+  color: #646464;
   font-style: italic;
   padding: 0 0.67em;
+}
+
+// Header links color.
+
+.custom-header-links {
+  color: #646464;
 }
