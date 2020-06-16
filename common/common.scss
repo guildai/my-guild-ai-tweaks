@@ -104,8 +104,7 @@ pre code.lang-output {
 img.logo-small,
 .nav-pills > li > a,
 .select-kit.dropdown-select-box .dropdown-select-box-header {
-  border-radius: 2px;
-  opacity: 0.7;
+  border-radius: 4px;
 }
 
 // Command help option format.
@@ -179,8 +178,17 @@ ol.category-breadcrumb {
 
 // Header links color to Guild logo blue.
 
-.custom-header-links .headerLink a {
-  color: #283593;
+.custom-header-links {
+  margin-right: 0px;
+  .headerLink a {
+    color: #283593;
+  }
+}
+
+// Left margin for header buttons. Need to select first button to apply.
+
+.header-buttons button:first-of-type {
+  margin-left: 20px;
 }
 
 // Onebox: GitHub link style.
@@ -238,7 +246,7 @@ aside.onebox.githubblob .source {
   position: absolute;
   top: 0.5em;
   left: 0.7em;
-  color: #ddd;
+  color: #cecece;
 }
 
 pre code.lang-command {
