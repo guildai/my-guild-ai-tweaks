@@ -122,7 +122,7 @@ img.logo-small,
   padding-left: 0;
 
   li {
-    line-height: 1.8;
+    padding: 0.15em 0;
 
     svg {
       color: desaturate($tertiary, 100%);
@@ -257,4 +257,21 @@ pre code.lang-command {
 
 .suggested-topics-message {
   display: none;
+}
+
+// Term definition table.
+
+.terms table {
+  td {
+    vertical-align: top;
+    padding: 0.5em;
+  }
+  td:nth-child(1) {
+    white-space: nowrap;
+    
+    svg {
+      color: desaturate($tertiary, 100%);
+      margin-right: 0.3em;
+    }
+  }
 }
