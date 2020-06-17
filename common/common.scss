@@ -182,6 +182,7 @@ ol.category-breadcrumb {
   margin-right: 0px;
   .headerLink a {
     color: #283593;
+    font-size: 1em;
   }
 }
 
@@ -206,11 +207,11 @@ aside.onebox {
 
 pre.onebox {
   margin: 0;
-  
+
   code ol.lines {
     margin: 0 0 0 20px;
     padding-inline-start: 20px;
-    
+
     li {
       border: none;
       margin-left: 0;
@@ -268,7 +269,7 @@ pre code.lang-command {
   }
   td:nth-child(1) {
     white-space: nowrap;
-    
+
     svg {
       color: desaturate($tertiary, 100%);
       margin-right: 0.3em;
