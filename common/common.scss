@@ -70,11 +70,19 @@ h6, .cooked h6, .d-editor-preview h6 {
   padding-bottom: 110px;
 }
 
-// Reduce size of code font.
+// Code style.
 
 code, kbd, pre, samp {
   font-family: 'Roboto Mono',monospace;
   font-size: 13.5px;
+  padding: 0 0.2em;
+  letter-spacing: -0.01em;
+}
+
+// Extend bg color formatting to a > code.
+
+a > code {
+  background: #f8f8f8;
 }
 
 // Code block format: darken, round corners, padding.
@@ -91,7 +99,6 @@ pre code.lang-output {
   color: #fff;
   background-color: #888;
 }
-
 
 // Tweak button format.
 
