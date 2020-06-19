@@ -118,7 +118,11 @@ img.logo-small,
 
 .cooked table td.guild-cmd-option {
   white-space: nowrap;
-  padding-right: 8px;
+}
+
+.cooked table td,
+.d-editor-preview table td {
+  padding: 0.3em 0.8em 0.15em;
   vertical-align: baseline;
 }
 
