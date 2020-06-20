@@ -38,6 +38,12 @@ h6, .cooked h6, .d-editor-preview h6 {
   font-size: 1em;
 }
 
+// Bump line height from 1.4.
+
+.cooked, .d-editor-preview {
+  line-height: 1.5;
+}
+
 // ul padding.
 
 .cooked ul,
@@ -88,15 +94,20 @@ code, kbd, pre, samp {
 
 // Extend bg color formatting to a > code.
 
+$code-bg: #f3f3f3;
+
+p > code, 
+li > code, 
+pre > code,
 a > code {
-  background: #f8f8f8;
+  background: $code-bg;
 }
 
 // Code block format: darken, round corners, padding.
 
 pre code {
   border-radius: 3px;
-  background: #f6f6f6;
+  background: $code-bg;
 }
 
 // Show 'command' and 'output' examples with dark theme.
