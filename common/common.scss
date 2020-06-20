@@ -154,8 +154,46 @@ img.logo-small,
 
 // Header formatting.
 
+header.d-header {
+  background: #283593;
+  box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.5);
+}
+
+.custom-header-links {
+  margin-right: 0px;
+  .headerLink a {
+    color: #fff;
+    font-size: 1.2em;
+  }
+}
+
+.d-header-icons .d-icon {
+  color: #fff;
+  height: 23px;
+}
+
 .list-controls .combo-box .combo-box-header {
   border: 1px solid #e9e9e9;
+}
+
+// Reverse colors for smaller header (used when scrolling down on doc).
+
+.extra-info-wrapper {
+  .header-title {
+    margin: 0;
+  }
+  
+  .topic-link {
+    color: #fff;
+  }
+  
+  .topic-statuses .d-icon {
+    color: #ccc;
+  }
+  
+  .badge-wrapper .badge-category .category-name {
+    color: #ccc;
+  }
 }
 
 // Header buttons.
@@ -187,14 +225,10 @@ ol.category-breadcrumb {
   padding: 0 0.67em;
 }
 
-// Header links color to Guild logo blue.
+// Hide custom header links when hide-menus class is set.
 
-.custom-header-links {
-  margin-right: 0px;
-  .headerLink a {
-    color: #283593;
-    font-size: 1em;
-  }
+.hide-menus .header-buttons {
+  display: none;
 }
 
 // Left margin for header buttons. Need to select first button to apply.
@@ -282,8 +316,53 @@ pre code.lang-command {
     white-space: nowrap;
 
     svg {
-      color: desaturate($tertiary, 100%);
+      color: $primary-high;
       margin-right: 0.3em;
     }
   }
+}
+
+// Callout styles.
+
+.callout {
+  display: block;
+  margin-bottom: 0.2em;
+  font-size: 90%;
+  color: darken($primary-high, 20%);
+
+  svg {
+    margin-right: 0.3em;
+    color: lighten($primary-high, 20%);
+  }
+  
+  &.tip {
+    &:after {
+      content: "TIP";
+    }
+  }
+  
+  &.info {
+    &:after {
+      content: "INFO";
+    }
+  }
+  
+  &.important {
+    &:after {
+      content: "IMPORTANT";
+    }
+  }
+}
+
+// Code highlight - remove bold.
+
+.hljs-keyword,
+.hljs-subst, 
+.hljs-request, 
+.hljs-status,
+.hljs-title, 
+.hljs-name, 
+.hljs-params, 
+{
+  font-weight: normal;    
 }

@@ -47,6 +47,14 @@
                 marker.removeAttr("data-guild-term-icon");
             });
             
+            // Apply icons.
+            $elem.find("[data-guild-icon]").each(function() {
+                const target = $(this);
+                const icon = iconHTML(target.attr("data-guild-icon"));
+                target.prepend(icon);
+                target.removeAttr("data-guild-icon");
+            });
+            
             // Add stylable command prompt element to command code blocks.
             $elem.find("code.lang-command").each(function() {
                 $(this).parent().prepend($('<span />').addClass("command-line-prompt").html("$"));
