@@ -88,8 +88,11 @@ h6, .cooked h6, .d-editor-preview h6 {
 code, kbd, pre, samp {
   font-family: 'Roboto Mono',monospace;
   font-size: 13.5px;
-  padding: 0 0.2em;
   letter-spacing: -0.01em;
+}
+
+code {
+  padding: 0 0.2em;
 }
 
 // Extend bg color formatting to a > code.
@@ -123,6 +126,10 @@ pre code.lang-output {
 .copy-codeblocks .copy-cmd {
   border: none;
   border-radius: 2px;
+  top: 0.5em;
+  right: 0.5em;
+  padding: 6px 9px;
+  font-family: 'Roboto',sans-serif;
 }
 
 .btn,
@@ -328,11 +335,11 @@ aside.onebox.githubblob .source {
   position: absolute;
   top: 0.5em;
   left: 0.7em;
-  color: #cecece;
+  color: #b0b0b0;
 }
 
 pre code.lang-command {
-  padding-left: 1.67em;
+  padding-left: 1.8em;
 }
 
 // Hide suggested topics message.
