@@ -83,6 +83,12 @@ h6, .cooked h6, .d-editor-preview h6 {
   padding-bottom: 110px;
 }
 
+// Darken blockquote.
+
+blockquote {
+  background-color: #f3f3f3;
+}
+
 // Code style.
 
 code, kbd, pre, samp {
@@ -91,18 +97,10 @@ code, kbd, pre, samp {
   letter-spacing: -0.01em;
 }
 
-code {
-  padding: 0 0.2em;
-}
-
-// Extend bg color formatting to a > code.
-
 $code-bg: #f3f3f3;
 
-p > code, 
-li > code, 
-pre > code,
-a > code {
+code {
+  padding: 0 0.2em;
   background: $code-bg;
 }
 
@@ -145,8 +143,17 @@ img.logo-small,
   white-space: nowrap;
 }
 
+// Table styles.
+
+.cooked table th,
+.d-editor-preview table th {
+  font-weight: 500;
+}
+
 .cooked table td,
-.d-editor-preview table td {
+.d-editor-preview table td,
+.cooked table th,
+.d-editor-preview table th {
   padding: 0.3em 0.8em 0.15em;
   vertical-align: baseline;
 }
