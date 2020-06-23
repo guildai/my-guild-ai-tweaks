@@ -1,8 +1,9 @@
 <script type="text/discourse-plugin" version="0.8">
     const container = Discourse.__container__;
     const { run } = Ember;
-    const { h } = require('virtual-dom');
+    const { h } = require("virtual-dom");
     const { iconHTML } = require("discourse-common/lib/icon-library");
+    const { jumpToElement } = require("discourse/lib/url");
 
     api.decorateCooked($elem => {
         run.scheduleOnce("actions", () => {
@@ -21,8 +22,11 @@
                     const href = a.attr("href");
                     if (href && href.startsWith("#")) {
                         a.on("click", function(e) {
-                            history.scrollRestoration = "auto";
+                            e.preventDefault();
                             e.stopPropagation();
+                            jumpToElement(href.substring(1));
+                            history.scrollRestoration = "auto";
+                            history.pushState(null, null, href);
                         });
                     }
                 });
