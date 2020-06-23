@@ -6,7 +6,7 @@
 
     api.decorateCooked($elem => {
         run.scheduleOnce("actions", () => {
-            
+
             // Guild docs processing
             // - Discourse takes over links to perform various actions, which cause issues
             //   with browser history when navigating to internal (e.g. TOC) links. As a
@@ -17,10 +17,10 @@
             const guildDocsMarker = $elem.find("[data-guild-docs='true']");
             if (guildDocsMarker.length) {
                 $elem.find("a").each(function() {
-                    const $a = $(this);
-                    const href = $a.attr("href");
+                    const a = $(this);
+                    const href = a.attr("href");
                     if (href && href.startsWith("#")) {
-                        $a.on("click", function(e) {
+                        a.on("click", function(e) {
                             history.scrollRestoration = "auto";
                             e.stopPropagation();
                         });
@@ -57,7 +57,7 @@
                 });
                 marker.removeAttr("data-guild-li-icon");
             });
-            
+
             // Apply term icons.
             $elem.find("[data-guild-term-icon]").each(function() {
                 const marker = $(this);
@@ -67,7 +67,7 @@
                 });
                 marker.removeAttr("data-guild-term-icon");
             });
-            
+
             // Apply icons.
             $elem.find("[data-guild-icon]").each(function() {
                 const target = $(this);
@@ -75,7 +75,7 @@
                 target.prepend(icon);
                 target.removeAttr("data-guild-icon");
             });
-            
+
             // Add stylable command prompt element to command code blocks.
             $elem.find("code.lang-command").each(function() {
                 $(this).parent().prepend($('<span />').addClass("command-line-prompt").html("$"));
