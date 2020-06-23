@@ -2,5 +2,16 @@
   "name": "Guild AI Tweaks",
   "component": true,
   "license_url": "https://github.com/guildai/my-guild-ai-tweaks/blob/master/LICENSE",
-  "about_url": null
+  "about_url": null,
+  "authors": null,
+  "theme_version": null,
+  "minimum_discourse_version": null,
+  "maximum_discourse_version": null,
+  "assets": {
+  },
+  "color_schemes": {
+  },
+  "modifiers": {
+  },
+  "learn_more": "https://meta.discourse.org/t/beginners-guide-to-using-discourse-themes/91966"
 }

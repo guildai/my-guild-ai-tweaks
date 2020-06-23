@@ -3,7 +3,7 @@ $guild-blue: #283593;
 // Typography
 
 html {
-  font-family: 'Roboto',sans-serif;
+  font-family: 'Robotomain',sans-serif;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -36,6 +36,10 @@ h5, .cooked h5, .d-editor-preview h5 {
 
 h6, .cooked h6, .d-editor-preview h6 {
   font-size: 1em;
+}
+
+hr {
+  margin: 3em 0;
 }
 
 // Link color
@@ -76,10 +80,12 @@ a, a:visited {
   display: none;
 }
 
-// Extend page to align with header width
+// Extend page to align with header width and fix padding.
 
 #main-outlet {
   max-width: 1024px;
+  padding: 3em;
+  padding-bottom: 3em !important;
 }
 
 // Bring page up slightly
@@ -497,4 +503,14 @@ img.avatar {
     position: relative;
     left: -1.5em;
   }
+  
+  li {
+    padding-bottom: 0.5em;
+  }
+}
+
+// Suggested topics contribute space to the bottom of the page.
+
+.suggested-topics {
+  padding-bottom: 0px;
 }
