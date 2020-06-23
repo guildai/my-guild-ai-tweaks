@@ -1,4 +1,6 @@
 $guild-blue: #283593;
+$guild-link: lighten($guild-blue, 10%);
+$code-bg: #f3f3f3;
 
 // Typography
 
@@ -45,7 +47,7 @@ hr {
 // Link color
 
 a, a:visited {
-  color: lighten($guild-blue, 10%);
+  color: $guild-link;
 }
 
 // Bump line height from 1.4
@@ -103,18 +105,28 @@ code, kbd, pre, samp {
   letter-spacing: -0.01em;
 }
 
-$code-bg: #f3f3f3;
-
 code {
   padding: 0 0.2em;
-  background: $code-bg;
+  color: lighten($primary, 10%);
+}
+
+a code,
+a:visited code {
+  color: $guild-link;
+}
+
+// Code in pars should be highlighted with background.
+
+p code {
+  border-radius: 1px;
+  background-color: $code-bg;
 }
 
 // Code block format: darken, round corners, padding
 
 pre code {
   border-radius: 3px;
-  background: $code-bg;
+  background-color: $code-bg;
 }
 
 // Show 'command' and 'output' examples with dark theme
@@ -283,6 +295,13 @@ ol.category-breadcrumb {
   color: $primary-high;
   font-style: italic;
   padding: 0 0.67em;
+  display: block;
+  margin-top: -0.5em;
+}
+
+.caption code {
+  color: $primary-high;
+  background-color: unset;
 }
 
 // Hide some header links when menus are hidden to provide more room for topic title
