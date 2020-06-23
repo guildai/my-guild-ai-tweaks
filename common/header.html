@@ -6,6 +6,27 @@
 
     api.decorateCooked($elem => {
         run.scheduleOnce("actions", () => {
+            
+            // Guild docs processing
+            // - Discourse takes over links to perform various actions, which cause issues
+            //   with browser history when navigating to internal (e.g. TOC) links. As a
+            //   workaround, we intercept click events for internal links and prevent their
+            //   propagation to the Discourse handlers. We also force history.scrollRestoration
+            //   to 'auto' to enable proper scrolling when the user clicks back from an
+            //   internal link.
+            const guildDocsMarker = $elem.find("[data-guild-docs='true']");
+            if (guildDocsMarker.length) {
+                $elem.find("a").each(function() {
+                    const $a = $(this);
+                    const href = $a.attr("href");
+                    if (href && href.startsWith("#")) {
+                        $a.on("click", function(e) {
+                            history.scrollRestoration = "auto";
+                            e.stopPropagation();
+                        });
+                    }
+                });
+            }
 
             // Command help formatting:
             // - add 'guild-cmd-option' class for styling
