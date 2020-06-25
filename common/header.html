@@ -4,10 +4,49 @@
     const { h } = require("virtual-dom");
     const { iconHTML } = require("discourse-common/lib/icon-library");
     const { jumpToElement } = require("discourse/lib/url");
+    
+    const saveScrollHistory = function() {
+        console.log(["SAVING SCROLL POS HISTORY", history.state]);
+        history.state["scrollY"] = window.scrollY;
+        history.replaceState(history.state, null, null);
+    }
+    
+    // Save scroll position in history on click.
+    $("#main").on("click.scroll-history", "a", saveScrollHistory);
+
+    // When showing a post, restore scroll position if it's available.
+    api.onAppEvent("post:highlight", function() {
+        run.schedule("afterRender", () => {
+            console.log(["CUR PAGE HISTORY STATE", history.state]);
+            const historyScrollY = history.state["scrollY"];
+            if (historyScrollY) {
+                console.log(["SCROLL TO", historyScrollY]);
+                window.scrollTo(0, historyScrollY);
+            }
+        });
+    });
 
     api.decorateCooked($elem => {
         run.scheduleOnce("actions", () => {
-
+            // Save scroll position in history on click.
+            $elem.on("click.scroll-history", "a", saveScrollHistory);
+        
+            // Remove click badges. This involves also removing trailing spaces from
+            // the link text due to Discourse formatting.
+            //
+            // Note this is done prior to adding external link icons (see below) as the
+            // white-space trimming step replaces all link text with the trimmed value,
+            // which ends up removing any appended icons.
+            //
+            $elem.find("a").each(function() {
+                const $a = $(this);
+                const $clickBadge = $a.find("span.badge.clicks");
+                if ($clickBadge.length) {
+                    $clickBadge.remove()
+                    $a.text($a.text().replace(/\s+$/, ""));
+                }
+            });
+    
             // Guild docs processing
             // - Discourse takes over links to perform various actions, which cause issues
             //   with browser history when navigating to internal (e.g. TOC) links. As a
@@ -15,19 +54,32 @@
             //   propagation to the Discourse handlers. We also force history.scrollRestoration
             //   to 'auto' to enable proper scrolling when the user clicks back from an
             //   internal link.
+            //
+            // - Set external links to open in a new tab. This is a work-around for an issue
+            //   where we lose our history state and can't restore the scroll position on back
+            //   navigation. We also style the links to show they're external.
+            //
             const guildDocsMarker = $elem.find("[data-guild-docs='true']");
+            const extLinkIcon = iconHTML("external-link-alt");
             if (guildDocsMarker.length) {
                 $elem.find("a").each(function() {
-                    const a = $(this);
-                    const href = a.attr("href");
+                    const $a = $(this);
+                    const href = $a.attr("href");
+                    // Handle history for internal links. See note above.
                     if (href && href.startsWith("#")) {
-                        a.on("click", function(e) {
+                        $a.on("click", function(e) {
                             e.preventDefault();
                             e.stopPropagation();
                             jumpToElement(href.substring(1));
                             history.scrollRestoration = "auto";
                             history.pushState(null, null, href);
                         });
+                        
+                    // Modify external links. See note above.
+                    } else if (href && !href.startsWith("/")) {
+                        $a.attr("target", "_blank");
+                        $a.addClass("ext");
+                        $a.append(extLinkIcon);
                     }
                 });
             }
@@ -83,7 +135,7 @@
             // Add stylable command prompt element to command code blocks.
             $elem.find("code.lang-command").each(function() {
                 $(this).parent().prepend($('<span />').addClass("command-line-prompt").html("$"));
-            })
+            });
         });
     }, {id: "guild-cmd-tweaks"});
 

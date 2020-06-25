@@ -443,6 +443,8 @@ pre code.lang-command {
     &:after {
       content: "HIGHLIGHT";
     }
+    // Reset from Discourse 'highlight' class, which changes the bg color.
+    background-color: unset;
   }
   &.highlights {
     &:after {
@@ -532,4 +534,12 @@ img.avatar {
 
 .suggested-topics {
   padding-bottom: 0px;
+}
+
+// External link styles
+
+a.ext svg {
+  font-size: 70%;
+  opacity: 0.6;
+  margin-left: 0.3em;
 }
