@@ -31,22 +31,6 @@
             // Save scroll position in history on click.
             $elem.on("click.scroll-history", "a", saveScrollHistory);
         
-            // Remove click badges. This involves also removing trailing spaces from
-            // the link text due to Discourse formatting.
-            //
-            // Note this is done prior to adding external link icons (see below) as the
-            // white-space trimming step replaces all link text with the trimmed value,
-            // which ends up removing any appended icons.
-            //
-            $elem.find("a").each(function() {
-                const $a = $(this);
-                const $clickBadge = $a.find("span.badge.clicks");
-                if ($clickBadge.length) {
-                    $clickBadge.remove()
-                    $a.text($a.text().replace(/\s+$/, ""));
-                }
-            });
-    
             // Guild docs processing
             // - Discourse takes over links to perform various actions, which cause issues
             //   with browser history when navigating to internal (e.g. TOC) links. As a
@@ -76,7 +60,7 @@
                         });
                         
                     // Modify external links. See note above.
-                    } else if (href && !href.startsWith("/")) {
+                    } else if (!$a.hasClass("lightbox") && href && !href.startsWith("/")) {
                         $a.attr("target", "_blank");
                         $a.addClass("ext");
                         $a.append(extLinkIcon);
@@ -135,6 +119,19 @@
             // Add stylable command prompt element to command code blocks.
             $elem.find("code.lang-command").each(function() {
                 $(this).parent().prepend($('<span />').addClass("command-line-prompt").html("$"));
+            });
+            
+            // Remove click badges. This involves also removing trailing spaces from
+            // the link text due to Discourse formatting.
+            $elem.find("a").each(function() {
+                const $a = $(this);
+                const $clickBadge = $a.find("span.badge.clicks");
+                if ($clickBadge.length) {
+                    $clickBadge.remove()
+                    // Remove extra space included by Discourse when they create the a element 
+                    // with a badge.
+                    $a[0].removeChild($a[0].childNodes[1]);
+                }
             });
         });
     }, {id: "guild-cmd-tweaks"});
