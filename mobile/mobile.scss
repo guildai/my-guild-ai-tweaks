@@ -1,20 +1,100 @@
-// Bring page up to match margins.
+// Over page spacing.
 
 #main {
-  padding-top: 74px;
-  padding-bottom: 74px;
+  padding: 4.66em 0 1em;
 }
 
 #main-outlet {
-  width: calc(100% - 70px);
+  padding: 1.3em !important;
+  width: calc(100% - 4.6em);
 }
+
+// Size header.
 
 header.d-header .panel {
   margin-top: -3px;
+}
+
+.d-header #site-logo {
+  max-height: 30px;
 }
 
 // Reduce drop shadow for header.
 
 header.d-header {
   box-shadow: 0px 0px 7px 0px rgba(0,0,0,0.5);
+}
+
+// Restore category description on mobile.
+
+.category-list.with-topics .category-list-item .category-description {
+  display: unset;
+}
+
+// In mobile topics are included in the category blocks. We hde them
+// so categories resemble those in Desktop. While this loses topics
+// it tidies up the display for site browsing / navigation.
+
+.category-topic-link {
+  display: none;
+}
+
+// Remove max-width for topic list, which otherwise causes the category
+// description to wrap.
+
+.topic-list th, .topic-list td {
+  max-width: unset;
+}
+
+// Remove all category list table borders.
+
+.category-list-item.category tr {
+  border: none;
+}
+
+// Remove border to category list footer.
+
+.category-list-item>footer, .subcategory-list-item>footer {
+  border: none;
+}
+
+// Remove bottom border of category list.
+
+.category-list-item {
+  border-bottom: none !important;
+  margin-bottom: 0.67em;
+}
+
+// Spacing for category category description.
+
+.category-list-item .category-description td,
+.subcategory-list-item .category-description td {
+  padding-top: 0.5em;
+}
+
+// Subcategory spacing.
+
+.category-list-item .subcategories-list td,
+.subcategory-list-item .subcategories-list td {
+  padding: 0;   
+}
+
+// Remove strange 2px margin from category list.
+
+.categories-list .category-list {
+  margin: 0;
+}
+
+// Remove left margin from category list by shifting
+// top-level components left. This is simpler than resetting
+// the various 10px left margins that are set in multiple
+// styles upstream.
+
+.topic-list {
+  margin-left: -10px;
+}
+
+.category-list-item>footer, 
+.subcategory-list-item>footer {
+  margin-left: -10px;
 }
