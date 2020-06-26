@@ -114,6 +114,7 @@
                 const icon = iconHTML(target.attr("data-guild-icon"));
                 target.prepend(icon);
                 target.removeAttr("data-guild-icon");
+                target.addClass("guild-icon");
             });
 
             // Add stylable command prompt element to command code blocks.

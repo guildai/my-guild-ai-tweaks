@@ -5,7 +5,7 @@ $code-bg: #f3f3f3;
 // Typography
 
 html {
-  font-family: 'Robotomain',sans-serif;
+  font-family: 'Roboto',sans-serif;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -48,6 +48,12 @@ hr {
 
 a, a:visited {
   color: $guild-link;
+}
+
+// Default svg icon color for icons applied with data-guild-icon
+
+.guild-icon .svg-icon {
+  color: lighten($primary-high, 10%);
 }
 
 // Bump line height from 1.4
@@ -299,11 +305,6 @@ ol.category-breadcrumb {
   margin-top: -0.5em;
 }
 
-.caption code {
-  color: $primary-high;
-  background-color: unset;
-}
-
 // Hide some header links when menus are hidden to provide more room for topic title
 
 .hide-menus .header-buttons .features,
@@ -412,7 +413,6 @@ pre code.lang-command {
 
   svg {
     margin-right: 0.3em;
-    color: lighten($primary-high, 20%);
   }
   
   &.tip {
@@ -539,8 +539,46 @@ img.avatar {
 // External link styles
 
 a.ext svg {
-  font-size: 70%;
+  font-size: 68%;
   opacity: 0.6;
   margin-left: 0.3em;
-  margin-bottom: 1px;
+  vertical-align: baseline;
+}
+
+// Directory listing indentation
+
+.dir-1 {
+  margin-left: 1.25em;
+}
+
+.dir-2 {
+  margin-left: 2.5em;
+}
+
+.dir-3 {
+  margin-left: 3.75em;
+}
+
+.dir-4 {
+  margin-left: 5em;
+}
+
+.dir-5 {
+  margin-left: 6.25em;
+}
+
+.dir-6 {
+  margin-left: 7.5em;
+}
+
+// Nav button styles
+
+.btn.nav .d-icon {
+  margin: 0 0 0 0.25em;
+}
+
+// Remove lower space from images in editor preview
+
+.d-editor-preview .image-wrapper {
+  padding: 0;
 }
