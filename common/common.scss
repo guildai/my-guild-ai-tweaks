@@ -41,13 +41,34 @@ h6, .cooked h6, .d-editor-preview h6 {
 }
 
 hr {
-  margin: 3em 0;
+  margin: 2.5em 0;
 }
 
 // Link color
 
 a, a:visited {
   color: $guild-link;
+}
+
+// Bullets
+
+.cooked, .d-editor-preview {
+  ul {
+    list-style: none;
+  }
+  
+  ul li::before {
+    content: "\f0c8";
+    color: $primary-high;
+    display: inline-block;
+    width: calc(2em + 3px);
+    margin-left: calc(-3em + 3px);
+    font-size: 6px;
+    position: relative;
+    bottom: calc(1em - 3px);
+    font-family: 'Font Awesome 5 Pro';
+    font-weight: 900;
+  }
 }
 
 // Default svg icon color for icons applied with data-guild-icon
@@ -128,11 +149,17 @@ p code {
   background-color: $code-bg;
 }
 
-// Code block format: darken, round corners, padding
+// Code block format: darken, round corners, padding.
 
 pre code {
   border-radius: 3px;
   background-color: $code-bg;
+}
+
+// Remove max height for Guild docs.
+
+.guild-docs pre code {
+  max-height: unset;
 }
 
 // Show 'command' and 'output' examples with dark theme
@@ -208,12 +235,14 @@ img.logo-small,
   }
 }
 
-// Header formatting
+// Color and drop shadow for header
 
 header.d-header {
   background: $guild-blue;
   box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.5);
 }
+
+// Color and hover behavior for header links (same as main site)
 
 .custom-header-links {
   margin-right: 0px;
@@ -227,13 +256,11 @@ header.d-header {
   }
 }
 
+// Header icons color and size
+
 .d-header-icons .d-icon {
   color: #fff;
   height: 23px;
-}
-
-.list-controls .combo-box .combo-box-header {
-  border: 1px solid #e9e9e9;
 }
 
 // Header buttons style
@@ -264,6 +291,12 @@ header.d-header {
   .badge-wrapper .badge-category .category-name {
     color: #ccc;
   }
+}
+
+// Restore border to drop downs (removed by graceful)
+
+.list-controls .combo-box .combo-box-header {
+  border: 1px solid #e9e9e9;
 }
 
 // Nudge pin icon to left
@@ -469,7 +502,12 @@ pre code.lang-command {
 // Image borders
 
 .lightbox-wrapper .lightbox {
-  box-shadow: rgba(0, 0, 0, 0.2) 0 0 7px;
+  box-shadow: rgba(0, 0, 0, 0.3) 0 0 7px;
+}
+
+.lightbox-wrapper, 
+.lightbox-wrapper * {
+  border-radius: 3px;    
 }
 
 // Circular avator icon
@@ -573,8 +611,15 @@ a.ext svg {
 
 // Nav button styles
 
-.btn.nav .d-icon {
-  margin: 0 0 0 0.25em;
+.btn.nav {
+  background-color: $quaternary;
+  a {
+    color: $secondary;
+  }
+  .d-icon {
+    margin: 0 0 0 0.25em;
+    color: $secondary;
+  }
 }
 
 // Remove lower space from images in editor preview

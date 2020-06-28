@@ -1,3 +1,5 @@
+<script src="https://kit.fontawesome.com/6b9551e730.js" crossorigin="anonymous"></script>
+
 <script type="text/discourse-plugin" version="0.8">
     const container = Discourse.__container__;
     const { run } = Ember;
@@ -32,6 +34,8 @@
             $elem.on("click.scroll-history", "a", saveScrollHistory);
         
             // Guild docs processing
+            // - Tag elem with guild-docs class.
+            //
             // - Discourse takes over links to perform various actions, which cause issues
             //   with browser history when navigating to internal (e.g. TOC) links. As a
             //   workaround, we intercept click events for internal links and prevent their
@@ -44,8 +48,9 @@
             //   navigation. We also style the links to show they're external.
             //
             const guildDocsMarker = $elem.find("[data-guild-docs='true']");
-            const extLinkIcon = iconHTML("external-link-alt");
             if (guildDocsMarker.length) {
+                const extLinkIcon = iconHTML("external-link-alt");
+                $elem.addClass("guild-docs");
                 $elem.find("a").each(function() {
                     const $a = $(this);
                     const href = $a.attr("href");
