@@ -1,6 +1,25 @@
+// Variables
+
 $guild-blue: #283593;
 $guild-link: lighten($guild-blue, 10%);
-$code-bg: #f3f3f3;
+$code-bg: #f0f0f0;
+$fa-font: "Font Awesome 5 Pro";
+$icon-gray: lighten($primary-high, 10%);
+
+// Icons
+
+$fa-angle-double-left: "\f100";
+$fa-angle-double-right: "\f101";
+$fa-check-circle: "\f058";
+$fa-exclamation-circle: "\f06a";
+$fa-external-link-alt: "\f35d";
+$fa-file: "\f15b";
+$fa-folder: "\f07b";
+$fa-folder-open: "\f07c";
+$fa-info-circle: "\f05a";
+$fa-square: "\f0c8";
+$fa-square-full: "\f45c";
+$fa-stars: "\f762";
 
 // Typography
 
@@ -44,6 +63,11 @@ hr {
   margin: 2.5em 0;
 }
 
+code, kbd, pre, samp {
+  font-family: 'Roboto Mono',monospace;
+  font-size: 92%;
+}
+
 // Link color
 
 a, a:visited {
@@ -58,23 +82,22 @@ a, a:visited {
   }
   
   ul li::before {
-    content: "\f0c8";
+    float: left;
+    content: $fa-square-full;
     color: $primary-high;
-    display: inline-block;
-    width: calc(2em + 3px);
-    margin-left: calc(-3em + 3px);
-    font-size: 6px;
+    margin-left: calc(-3em + 2px);
+    font-size: 5px;
     position: relative;
-    bottom: calc(1em - 3px);
-    font-family: 'Font Awesome 5 Pro';
-    font-weight: 900;
+    top: calc(1em + 2.5px);
+    font-family: $fa-font;
+    font-weight: 600;
   }
 }
 
 // Default svg icon color for icons applied with data-guild-icon
 
 .guild-icon .svg-icon {
-  color: lighten($primary-high, 10%);
+  color: $icon-gray;
 }
 
 // Bump line height from 1.4
@@ -83,11 +106,22 @@ a, a:visited {
   line-height: 1.5;
 }
 
-// ul padding
+// ul spacing
 
 .cooked ul,
 .d-editor-preview ul {
-  padding-left: 1.5em;    
+  padding-left: 2em;    
+}
+
+// old spacing
+
+.cooked ol,
+.d-editor-preview ol {
+  padding-left: 2em;
+  
+  li {
+    padding-left: 0.15em;
+  }
 }
 
 // Restore bold to topic title
@@ -126,12 +160,6 @@ a, a:visited {
 
 // Code style
 
-code, kbd, pre, samp {
-  font-family: 'Roboto Mono',monospace;
-  font-size: 13.5px;
-  letter-spacing: -0.01em;
-}
-
 code {
   padding: 0 0.2em;
   color: lighten($primary, 10%);
@@ -142,18 +170,27 @@ a:visited code {
   color: $guild-link;
 }
 
-// Code in pars should be highlighted with background.
+// Darken blockquote background
 
-p code {
+blockquote {
+  border-left: 5px solid #e0e0e0;
+  background-color: #f6f6f6;
+}
+
+// Code in pars and table cells should be highlighted with background.
+
+p code,
+td code {
   border-radius: 1px;
   background-color: $code-bg;
 }
 
 // Code block format: darken, round corners, padding.
 
-pre code {
+pre code, .hljs {
   border-radius: 3px;
   background-color: $code-bg;
+  padding: 0.5em 0.7em;
 }
 
 // Remove max height for Guild docs.
@@ -198,7 +235,7 @@ img.logo-small,
 
 .cooked table thead th,
 .d-editor-preview table thead th {
-  font-weight: 500;
+  font-weight: normal;
 }
 
 .cooked table td,
@@ -333,9 +370,14 @@ ol.category-breadcrumb {
 .caption {
   color: $primary-high;
   font-style: italic;
-  padding: 0 0.67em;
+  padding: 0 0.5em;
   display: block;
   margin-top: -0.5em;
+  
+  code {
+    background: inherit;
+    color: inherit;
+  }
 }
 
 // Hide some header links when menus are hidden to provide more room for topic title
@@ -424,10 +466,15 @@ pre code.lang-command {
 .terms table {
   td {
     vertical-align: top;
-    padding: 0.5em;
   }
+  
   td:nth-child(1) {
     white-space: nowrap;
+    color: $primary-high;
+    
+    code {
+      background: inherit;
+    }
 
     svg {
       color: $primary-high;
@@ -437,6 +484,13 @@ pre code.lang-command {
 }
 
 // Callout styles
+
+@mixin callout-icon {
+  color: $icon-gray;
+  font-family: $fa-font;
+  font-weight: 600;
+  margin-right: 0.4em;
+}
 
 .callout {
   display: block;
@@ -449,38 +503,67 @@ pre code.lang-command {
   }
   
   &.tip {
-    &:after {
+    &::before {
+      @include callout-icon;
+      content: $fa-check-circle;
+    }
+    &::after {
       content: "TIP";
     }
   }
   
   &.info {
-    &:after {
+    &::before {
+      @include callout-icon;
+      content: $fa-info-circle;
+    }
+    &::after {
       content: "INFO";
     }
   }
   
   &.note {
-    &:after {
+    &::before {
+      @include callout-icon;
+      content: $fa-info-circle;
+    }
+    &::after {
       content: "NOTE";
     }
   }
   
   &.important {
-    &:after {
+    &::before {
+      @include callout-icon;
+      content: $fa-exclamation-circle;
+    }
+    &::after {
       content: "IMPORTANT";
     }
   }
   
   &.highlight {
-    &:after {
+    &::before {
+      @include callout-icon;
+      content: $fa-stars;
+      position: relative;
+      bottom: 1px;
+    }
+    &::after {
       content: "HIGHLIGHT";
     }
     // Reset from Discourse 'highlight' class, which changes the bg color.
     background-color: unset;
   }
+  
   &.highlights {
-    &:after {
+    &::before {
+      @include callout-icon;
+      content: $fa-stars;
+      position: relative;
+      bottom: 1px;
+    }
+    &::after {
       content: "HIGHLIGHTS";
     }
   }
@@ -547,7 +630,7 @@ img.avatar {
 :not(.rtl) .d-toc-regular .d-toc .d-toc-heading {
   padding-left: 15px;
   
-  .d-toc-active:before {
+  .d-toc-active::before {
     left: -15px;
   }
 }
@@ -565,6 +648,10 @@ img.avatar {
   
   li {
     padding-bottom: 0.5em;
+    
+    &::before {
+      content: "";  // disable default bullet content
+    }
   }
 }
 
@@ -576,49 +663,87 @@ img.avatar {
 
 // External link styles
 
-a.ext svg {
-  font-size: 68%;
-  opacity: 0.6;
+a.ext::after {
+  font-family: $fa-font;
+  content: $fa-external-link-alt;
+  font-size: 0.7em;
   margin-left: 0.3em;
-  vertical-align: baseline;
+  opacity: 0.75;
 }
 
-// Directory listing indentation
+// Directory list styles
 
-.dir-1 {
-  margin-left: 1.25em;
+@mixin ls-icon {
+  color: $icon-gray;
+  font-family: $fa-font;
+  font-weight: 600;
+  font-size: 0.9em;
+  width: 1.5em;
+  display: inline-block;
 }
 
-.dir-2 {
-  margin-left: 2.5em;
+.ls-dir-open {
+  &::before {
+    @include ls-icon;
+    content: $fa-folder-open;
+  }
 }
 
-.dir-3 {
-  margin-left: 3.75em;
+.ls-dir {
+  &::before {
+    @include ls-icon;
+    content: $fa-folder;
+  }
 }
 
-.dir-4 {
-  margin-left: 5em;
+.ls-file {
+  &::before {
+    @include ls-icon;
+    content: $fa-file;
+    padding-left: 2px;
+    width: calc(1.5em - 2px);
+  }
 }
 
-.dir-5 {
-  margin-left: 6.25em;
+.ls-1 {
+  margin-left: 1.5em;
 }
 
-.dir-6 {
+.ls-2 {
+  margin-left: 3em;
+}
+
+.ls-3 {
+  margin-left: 4.5em;
+}
+
+.ls-4 {
+  margin-left: 6em;
+}
+
+.ls-5 {
   margin-left: 7.5em;
 }
 
-// Nav button styles
+.ls-6 {
+  margin-left: 9em;
+}
 
-.btn.nav {
+// Next button styles
+
+.btn.next {
   background-color: $quaternary;
+  padding: 7px 12px;
+  min-height: unset;
   a {
     color: $secondary;
   }
-  .d-icon {
-    margin: 0 0 0 0.25em;
+  &::after {
+    font-family: $fa-font;
+    content: $fa-angle-double-right;
     color: $secondary;
+    font-size: 0.8em;
+    margin-left: 0.5em;
   }
 }
 
@@ -626,4 +751,39 @@ a.ext svg {
 
 .d-editor-preview .image-wrapper {
   padding: 0;
+}
+
+// Details toggle styles
+
+@mixin details-icon {
+  font-family: $fa-font;
+  font-size: 0.8em;
+  margin-left: 0.5em;
+}
+
+details summary {
+  color: $guild-link;
+  font-size: calc(100% - 1.2px);
+}
+
+summary::before {
+  content: "Show";
+  margin: 0;
+}
+
+summary::after {
+  @include details-icon;
+  content: $fa-angle-double-right;
+}
+
+details[open]>summary::before,
+details.open>summary::before {
+  content: "Hide";
+  margin: 0;
+}
+
+details[open]>summary::after,
+details.open>summary::after {
+  @include details-icon;
+  content: $fa-angle-double-left
 }

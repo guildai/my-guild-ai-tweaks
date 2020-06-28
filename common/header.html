@@ -49,7 +49,6 @@
             //
             const guildDocsMarker = $elem.find("[data-guild-docs='true']");
             if (guildDocsMarker.length) {
-                const extLinkIcon = iconHTML("external-link-alt");
                 $elem.addClass("guild-docs");
                 $elem.find("a").each(function() {
                     const $a = $(this);
@@ -68,7 +67,6 @@
                     } else if (!$a.hasClass("lightbox") && href && !href.startsWith("/")) {
                         $a.attr("target", "_blank");
                         $a.addClass("ext");
-                        $a.append(extLinkIcon);
                     }
                 });
             }
@@ -111,15 +109,6 @@
                     $(this).prepend(icon);
                 });
                 marker.removeAttr("data-guild-term-icon");
-            });
-
-            // Apply icons.
-            $elem.find("[data-guild-icon]").each(function() {
-                const target = $(this);
-                const icon = iconHTML(target.attr("data-guild-icon"));
-                target.prepend(icon);
-                target.removeAttr("data-guild-icon");
-                target.addClass("guild-icon");
             });
 
             // Add stylable command prompt element to command code blocks.
