@@ -34,6 +34,7 @@
             $elem.on("click.scroll-history", "a", saveScrollHistory);
         
             // Guild docs processing
+            //
             // - Tag elem with guild-docs class.
             //
             // - Discourse takes over links to perform various actions, which cause issues
@@ -72,7 +73,9 @@
             }
 
             // Command help formatting:
+            //
             // - add 'guild-cmd-option' class for styling
+            //
             const guildCmdMarker = $elem.find("[data-guild-cmd='true']");
             if (guildCmdMarker.length) {
                 const optionsTable = $elem.find("#options").nextAll(".md-table");
@@ -89,26 +92,6 @@
                 const marker = $(this);
                 marker.addClass(marker.attr("data-guild-class"));
                 marker.removeAttr("data-guild-class");
-            });
-
-            // Apply list item icons.
-            $elem.find("[data-guild-li-icon]").each(function() {
-                const marker = $(this);
-                const icon = iconHTML(marker.attr("data-guild-li-icon"));
-                marker.find("li").each(function() {
-                    $(this).prepend(icon);
-                });
-                marker.removeAttr("data-guild-li-icon");
-            });
-
-            // Apply term icons.
-            $elem.find("[data-guild-term-icon]").each(function() {
-                const marker = $(this);
-                const icon = iconHTML(marker.attr("data-guild-term-icon"));
-                marker.find("td:nth-child(1)").each(function() {
-                    $(this).prepend(icon);
-                });
-                marker.removeAttr("data-guild-term-icon");
             });
 
             // Add stylable command prompt element to command code blocks.

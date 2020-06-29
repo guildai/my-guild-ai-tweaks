@@ -4,16 +4,19 @@ $guild-blue: #283593;
 $guild-link: lighten($guild-blue, 10%);
 $code-bg: #f0f0f0;
 $fa-font: "Font Awesome 5 Pro";
-$icon-gray: lighten($primary-high, 10%);
+$icon-gray: $primary-high;
 
 // Icons
 
+$fa-angle-double-down: "\f103";
 $fa-angle-double-left: "\f100";
 $fa-angle-double-right: "\f101";
+$fa-angle-right: "\f105";
 $fa-check-circle: "\f058";
 $fa-exclamation-circle: "\f06a";
 $fa-external-link-alt: "\f35d";
 $fa-file: "\f15b";
+$fa-file-alt: "\f15c";
 $fa-folder: "\f07b";
 $fa-folder-open: "\f07c";
 $fa-info-circle: "\f05a";
@@ -65,7 +68,7 @@ hr {
 
 code, kbd, pre, samp {
   font-family: 'Roboto Mono',monospace;
-  font-size: 92%;
+  font-size: 91%;
 }
 
 // Link color
@@ -74,23 +77,32 @@ a, a:visited {
   color: $guild-link;
 }
 
-// Bullets
+// Bullets and number lists
 
 .cooked, .d-editor-preview {
   ul {
     list-style: none;
+    padding-left: 2em;
+    
+    li::before {
+      content: $fa-square-full;
+      float: left;
+      font-family: $fa-font;
+      font-weight: 600;
+      font-size: 4.5px;
+      color: $primary-high;
+      margin-left: calc(-3em + 1px);
+      position: relative;
+      top: calc(1em + 3.5px);
+    }
   }
   
-  ul li::before {
-    float: left;
-    content: $fa-square-full;
-    color: $primary-high;
-    margin-left: calc(-3em + 2px);
-    font-size: 5px;
-    position: relative;
-    top: calc(1em + 2.5px);
-    font-family: $fa-font;
-    font-weight: 600;
+  ol {
+    padding-left: 2em;
+    
+    li {
+      padding-left: 0.15em;
+    }
   }
 }
 
@@ -106,24 +118,6 @@ a, a:visited {
   line-height: 1.5;
 }
 
-// ul spacing
-
-.cooked ul,
-.d-editor-preview ul {
-  padding-left: 2em;    
-}
-
-// old spacing
-
-.cooked ol,
-.d-editor-preview ol {
-  padding-left: 2em;
-  
-  li {
-    padding-left: 0.15em;
-  }
-}
-
 // Restore bold to topic title
 
 #topic-title h1 a {
@@ -133,7 +127,7 @@ a, a:visited {
 // Title edit icon
 
 #topic-title a.edit-topic .d-icon {
-  color: $primary-high;
+  color: $icon-gray;
   font-size: 0.6em;
 }
 
@@ -190,7 +184,7 @@ td code {
 pre code, .hljs {
   border-radius: 3px;
   background-color: $code-bg;
-  padding: 0.5em 0.7em;
+  padding: 0.7em;
 }
 
 // Remove max height for Guild docs.
@@ -202,6 +196,7 @@ pre code, .hljs {
 // Show 'command' and 'output' examples with dark theme
 
 pre code.lang-command,
+pre code.lang-command2,
 pre code.lang-output {
   color: #fff;
   background-color: #444;
@@ -250,15 +245,16 @@ img.logo-small,
 
 .guild-docs-section ul {
   list-style-type: none;
-  padding-left: 0;
+  padding-left: 0.5em;
 
-  li {
-    padding: 0.15em 0;
-
-    svg {
-      color: desaturate($tertiary, 100%);
-      margin-right: 0.3em;
-    }
+  li::before {
+    content: $fa-file-alt;
+    font-size: 1em;
+    font-weight: normal;
+    margin-left: 0;
+    position: unset;
+    margin-right: 0.5em;
+    color: $icon-gray;
   }
 }
 
@@ -267,8 +263,24 @@ img.logo-small,
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(50%, 1fr));
 
-  li {
-    line-height: inherit;
+  li::before {
+    content: $fa-angle-right;
+  }
+}
+
+// Guild document section
+
+.guild-docs-section-examples table {
+  td:nth-child(1)::before {
+    font-family: $fa-font;
+    content: $fa-file-alt;
+    margin-right: 0.5em;
+    color: $icon-gray;
+  }
+  
+  td:nth-child(2) {
+    color: $primary-high;
+    font-style: italic;
   }
 }
 
@@ -351,6 +363,10 @@ header.d-header {
   background-color: #f6f6f6;
 }
 
+.select-kit.combo-box .select-kit-header {
+  font-weight: normal;
+}
+
 // Reinstate highlights for selected nav option
 
 .nav-pills > li.active > a,
@@ -377,6 +393,7 @@ ol.category-breadcrumb {
   code {
     background: inherit;
     color: inherit;
+    padding: 0;
   }
 }
 
@@ -400,30 +417,36 @@ ol.category-breadcrumb {
   font-weight: normal;
 }
 
-// Onebox: border and margin
+// Onebox styles
 
 aside.onebox {
-  all: unset;
-}
-
-pre.onebox {
-  margin: 0;
-
-  code ol.lines {
-    margin: 0 0 0 20px;
-    padding-inline-start: 20px;
-
-    li {
-      border: none;
-      margin-left: 0;
-    }
+  border: none;
+  padding: 0;
+  
+  header {
+    margin-bottom: 2px;
+    font-size: calc(1em - 1.2px);
   }
 }
 
-// Onebox: code background consistent with other code
+// Onebox code background consistent with other code
 
-pre.onebox code {
-  background-color: #f6f6f6;
+pre.onebox {
+  margin: 0;
+  
+  code {
+    background-color: #f6f6f6;
+
+    ol.lines {
+      margin: 0 0 0 20px;
+      padding-inline-start: 20px;
+
+      li {
+        border: none;
+        margin-left: 0;
+      }
+    }
+  }
 }
 
 // Onebox: lighten GitHub icon
@@ -446,13 +469,14 @@ aside.onebox.githubblob .source {
 
 .command-line-prompt {
   position: absolute;
-  top: 0.5em;
+  top: calc(0.5em - 0.5px);
   left: 0.7em;
+  font-size: calc(1em + 1px);
   color: #b0b0b0;
 }
 
 pre code.lang-command {
-  padding-left: 1.8em;
+  padding-left: 2em;
 }
 
 // Hide suggested topics message
@@ -668,7 +692,7 @@ a.ext::after {
   content: $fa-external-link-alt;
   font-size: 0.7em;
   margin-left: 0.3em;
-  opacity: 0.75;
+  opacity: 0.7;
 }
 
 // Directory list styles
@@ -706,34 +730,34 @@ a.ext::after {
 }
 
 .ls-1 {
-  margin-left: 1.5em;
+  margin-left: 1.2em;
 }
 
 .ls-2 {
-  margin-left: 3em;
+  margin-left: 2.4em;
 }
 
 .ls-3 {
-  margin-left: 4.5em;
+  margin-left: 3.6em;
 }
 
 .ls-4 {
-  margin-left: 6em;
+  margin-left: 4.8em;
 }
 
 .ls-5 {
-  margin-left: 7.5em;
+  margin-left: 6em;
 }
 
 .ls-6 {
-  margin-left: 9em;
+  margin-left: 6.2em;
 }
 
 // Next button styles
 
 .btn.next {
   background-color: $quaternary;
-  padding: 7px 12px;
+  padding: 8px 12px 7px;
   min-height: unset;
   a {
     color: $secondary;
@@ -782,8 +806,15 @@ details.open>summary::before {
   margin: 0;
 }
 
-details[open]>summary::after,
-details.open>summary::after {
+details[open] > summary::after,
+details.open > summary::after {
   @include details-icon;
-  content: $fa-angle-double-left
+  content: $fa-angle-double-down
 }
+
+// Support for applying color via 'dim' class
+
+.dim {
+  color: $primary-high;
+}
+
