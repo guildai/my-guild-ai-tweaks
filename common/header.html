@@ -8,9 +8,17 @@
     const { jumpToElement } = require("discourse/lib/url");
     
     const saveScrollHistory = function() {
-        console.log(["SAVING SCROLL POS HISTORY", history.state]);
         history.state["scrollY"] = window.scrollY;
         history.replaceState(history.state, null, null);
+    }
+    
+    const parseSelectRange = function(s) {
+        const range = /(\d+)-(\d+)/.exec(s);
+        if (!range) return null;
+        const start = parseInt(range[1]);
+        const end = parseInt(range[2]);
+        if (!start || !end) return null;
+        return {start: start, end: end};
     }
     
     // Save scroll position in history on click.
@@ -19,10 +27,8 @@
     // When showing a post, restore scroll position if it's available.
     api.onAppEvent("post:highlight", function() {
         run.schedule("afterRender", () => {
-            console.log(["CUR PAGE HISTORY STATE", history.state]);
             const historyScrollY = history.state["scrollY"];
             if (historyScrollY) {
-                console.log(["SCROLL TO", historyScrollY]);
                 window.scrollTo(0, historyScrollY);
             }
         });
@@ -31,7 +37,45 @@
     api.decorateCooked($elem => {
         run.scheduleOnce("actions", () => {
             // Save scroll position in history on click.
+            //
             $elem.on("click.scroll-history", "a", saveScrollHistory);
+            
+            // Apply explicit line select to GitHub onebox using data-guild-github-select wrapper.
+            //
+            $elem.find("[data-guild-github-select]").each(function() {
+                const $wrapper = $(this);
+                const selectRange = parseSelectRange($wrapper.attr("data-guild-github-select"));
+                if (!selectRange) {
+                    console.error("invalid range for data-guild-github-select: expected START:END");
+                    return;
+                }
+                const linesPattern = /L([\d-]+)$/;
+                const linesFrag = `L${selectRange.start}-L${selectRange.end}`;
+
+                // Wait on update to DOM to modify generated code.
+                $wrapper.on("DOMSubtreeModified", function(e) {
+                    
+                    // Use old.start.lines as proxy to know when we have lines to select.
+                    const $ol = $(e.target).find("ol.start.lines");
+                    if (!$ol.length) return;
+                    
+                    // Update GitHub links to reflect select range.
+                    $wrapper.find("a").each(function() {
+                        const $a = $(this);
+                        $a.attr("href", $a.attr("href").replace(linesPattern, linesFrag));
+                        $a.text($a.text().replace(linesPattern, linesFrag));
+                    });
+                    
+                    // Select specified lines.
+                    const startLine = parseInt($ol.attr("start"));
+                    const lines = $ol.children("li");
+                    for (var i = 0; i < lines.length; i++) {
+                        const line = i + startLine;
+                        const selected = line >= selectRange.start && line <= selectRange.end;
+                        $(lines[i]).toggleClass("selected", selected);
+                    }
+                });
+            });
         
             // Guild docs processing
             //
@@ -65,7 +109,9 @@
                         });
                         
                     // Modify external links. See note above.
-                    } else if (!$a.hasClass("lightbox") && href && !href.startsWith("/")) {
+                    } else if (href && !href.startsWith("/") && 
+                               !$a.hasClass("lightbox") && 
+                               !$a.parents(".onebox")) {
                         $a.attr("target", "_blank");
                         $a.addClass("ext");
                     }

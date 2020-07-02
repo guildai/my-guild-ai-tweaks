@@ -5,6 +5,7 @@ $guild-link: lighten($guild-blue, 10%);
 $code-bg: #f0f0f0;
 $fa-font: "Font Awesome 5 Pro";
 $icon-gray: $primary-high;
+$icon-gray-light: lighten($icon-gray, 10%);
 
 // Icons
 
@@ -127,8 +128,8 @@ a, a:visited {
 // Title edit icon
 
 #topic-title a.edit-topic .d-icon {
-  color: $icon-gray;
-  font-size: 0.6em;
+  color: $icon-gray-light;
+  font-size: 50%;
 }
 
 // Don't show suggestion to create new topic
@@ -395,6 +396,10 @@ ol.category-breadcrumb {
     color: inherit;
     padding: 0;
   }
+  
+  a {
+    color: lighten($guild-link, 10%);
+  }
 }
 
 // Hide some header links when menus are hidden to provide more room for topic title
@@ -521,6 +526,7 @@ pre code.lang-command {
   margin-bottom: 0.3em;
   font-size: 90%;
   color: darken($primary-high, 20%);
+  text-transform: uppercase;
 
   svg {
     margin-right: 0.3em;
@@ -531,19 +537,6 @@ pre code.lang-command {
       @include callout-icon;
       content: $fa-check-circle;
     }
-    &::after {
-      content: "TIP";
-    }
-  }
-  
-  &.info {
-    &::before {
-      @include callout-icon;
-      content: $fa-info-circle;
-    }
-    &::after {
-      content: "INFO";
-    }
   }
   
   &.note {
@@ -551,18 +544,12 @@ pre code.lang-command {
       @include callout-icon;
       content: $fa-info-circle;
     }
-    &::after {
-      content: "NOTE";
-    }
   }
   
   &.important {
     &::before {
       @include callout-icon;
       content: $fa-exclamation-circle;
-    }
-    &::after {
-      content: "IMPORTANT";
     }
   }
   
@@ -573,23 +560,8 @@ pre code.lang-command {
       position: relative;
       bottom: 1px;
     }
-    &::after {
-      content: "HIGHLIGHT";
-    }
     // Reset from Discourse 'highlight' class, which changes the bg color.
     background-color: unset;
-  }
-  
-  &.highlights {
-    &::before {
-      @include callout-icon;
-      content: $fa-stars;
-      position: relative;
-      bottom: 1px;
-    }
-    &::after {
-      content: "HIGHLIGHTS";
-    }
   }
 }
 
