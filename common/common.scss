@@ -86,18 +86,15 @@ a, a:visited {
     padding-left: 2em;
     
     li::before {
-      content: $fa-square-full;
+      content: "-";
       float: left;
-      font-family: $fa-font;
       font-weight: 600;
-      font-size: 4.5px;
-      color: $primary-high;
-      margin-left: calc(-3em + 1px);
-      position: relative;
-      top: calc(1em + 3.5px);
+      color: #646464;
+      text-indent: -1em;
     }
   }
-  
+ 
+    
   ol {
     padding-left: 2em;
     
@@ -245,16 +242,14 @@ img.logo-small,
 // Guild document section
 
 .guild-docs-section ul {
-  list-style-type: none;
-  padding-left: 0.5em;
-
+    
   li::before {
+    font-family: $fa-font;
     content: $fa-file-alt;
-    font-size: 1em;
     font-weight: normal;
     margin-left: 0;
     position: unset;
-    margin-right: 0.5em;
+    margin-right: 0.3em;
     color: $icon-gray;
   }
 }
@@ -266,6 +261,8 @@ img.logo-small,
 
   li::before {
     content: $fa-angle-right;
+    margin-left: 0.15em;
+    margin-right: 0.15em;
   }
 }
 
@@ -419,7 +416,7 @@ ol.category-breadcrumb {
 
 // Onebox: GitHub link style
 
-.onebox-body .d-toc-ignore a {
+.onebox-body a {
   font-size: 91%;
   font-weight: normal;
 }
@@ -469,7 +466,7 @@ aside.onebox.githubblob .source {
 
 .d-toc-regular .d-toc .d-toc-item.d-toc-active a {
   text-shadow: unset !important;
-  font-weight: 500;
+  font-weight: 500 !important;
 }
 
 // Command line prompt
@@ -500,7 +497,6 @@ pre code.lang-command {
   th {
     font-style: italic;
     color: $primary-high;
-    font-size: calc(1em - 1px);
   }
   
   th:nth-child(1) {
@@ -617,50 +613,66 @@ img.avatar {
   border-radius: 50%;   
 }
 
+// Bump TOC left side spacing from rule
+
+:not(.rtl) .d-toc-regular .d-toc .d-toc-heading {
+  padding-left: 15px !important;
+  
+  .d-toc-active::before {
+    left: -15px !important;
+  }
+}
+
 // TOC indent spacing
 
 :not(.rtl) .d-toc-regular .d-toc .d-toc-subheading {
-  padding-left: 1em;
+  padding-left: 1em !important;
+  
+  .d-toc-active:before {
+    left: -30px !important;
+  }
   
   .d-toc-subheading {
-    padding-left: 1em;
+    padding-left: 1em !important;
+    
+    .d-toc-active:before {
+      left: -45px !important;
+    }
     
     .d-toc-subheading {
-      padding-left: 1em;
+      padding-left: 1em !important;
+      
+      .d-toc-active:before {
+        left: -60px !important;
+      }
       
       .d-toc-subheading {
-        padding-left: 1em;
+        padding-left: 1em !important;
+        
+        .d-toc-active:before {
+          left: -75px !important;
+        }
       }
     }
   }
 }
 
-// Bump TOC left side spacing from rule
-
-:not(.rtl) .d-toc-regular .d-toc .d-toc-heading {
-  padding-left: 15px;
-  
-  .d-toc-active::before {
-    left: -15px;
-  }
-}
-
 // Terms bullet list
 
-.terms ul {
-  padding-left: 1.5em;
-  list-style-type: none;
-  
-  .term {
-    position: relative;
-    left: -1.5em;
-  }
-  
+.cooked .terms ul,
+.d-editor-preview .terms ul {
   li {
-    padding-bottom: 0.5em;
-    
     &::before {
-      content: "";  // disable default bullet content
+      content: unset;  // disable default bullet content
+    }
+    
+    >*:first-child {
+      margin-left: -1.5em;
+      margin-bottom: -0.8em;
+      
+      code {
+        background: inherit;
+      }
     }
   }
 }
@@ -802,12 +814,6 @@ details.open > summary::after {
 
 .dim {
   color: $primary-high;
-}
-
-// Guild attr styles
-
-.guild-attr {
-  margin-left: 1em;
 }
 
 // Reduce the size of oddly large numbers in tabular summaries.

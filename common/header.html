@@ -7,11 +7,13 @@
     const { iconHTML } = require("discourse-common/lib/icon-library");
     const { jumpToElement } = require("discourse/lib/url");
     
+    // Helper to save scroll history.
     const saveScrollHistory = function() {
         history.state["scrollY"] = window.scrollY;
         history.replaceState(history.state, null, null);
     }
     
+    // Helper to parse select range "N-M".
     const parseSelectRange = function(s) {
         const range = /(\d+)-(\d+)/.exec(s);
         if (!range) return null;
@@ -34,40 +36,13 @@
         });
     });
 
+    // Post cooked actions
     api.decorateCooked($elem => {
         run.scheduleOnce("actions", () => {
-            // Save scroll position in history on click.
+            // Save scroll position in history on link click.
             //
             $elem.on("click.scroll-history", "a", saveScrollHistory);
-            
-            // Apply element IDs when data-guild-id
-            $elem.find("[data-guild-id]").each(function() {
-                const $wrapper = $(this);
-                const $target = $wrapper.children().first();
-                if (!$target.length) return;
-                $target.attr("id", $wrapper.attr("data-guild-id"));
-                $wrapper.replaceWith($target);
-            });
-            
-            // Format attr section using data-guild-attr.
-            //
-            $elem.find("[data-guild-attr]").each(function() {
-                const $wrapper = $(this);
-                const $children = $wrapper.children();
-                if (!$children.length) return;
-                const attrId = $wrapper.attr("data-guild-attr");
-                // Set first child id - used for headers
-                const $child0 = $($children[0]);
-                $child0.attr("id", attrId);
-                // Wrap remaining children in new div to style.
-                const attrSection = $("<div class='guild-attr'></div>");
-                $child0.nextAll().detach().appendTo(attrSection);
-                attrSection.insertAfter($child0);
-                // Remove wrapper - needed so that header is not ignored by TOC.
-                $wrapper.replaceWith($wrapper.children());
-            });
-            
-            
+
             // Apply explicit line select to GitHub onebox using data-guild-github-select wrapper.
             //
             $elem.find("[data-guild-github-select]").each(function() {
