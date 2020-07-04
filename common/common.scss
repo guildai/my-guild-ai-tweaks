@@ -402,7 +402,9 @@ ol.category-breadcrumb {
   }
 }
 
-// Hide some header links when menus are hidden to provide more room for topic title
+// Hide some header links when menus are hidden to provide more room for topic title.
+// Ideally we'd just shrink the header buttons as needed to accommodate the longer
+// titles but haven't found the CSS/flexgrid fu for this.
 
 .hide-menus .header-buttons .features,
 .hide-menus .header-buttons .examples {
@@ -417,8 +419,8 @@ ol.category-breadcrumb {
 
 // Onebox: GitHub link style
 
-.d-toc-regular .d-toc-ignore {
-  font-size: unset;
+.onebox-body .d-toc-ignore a {
+  font-size: 91%;
   font-weight: normal;
 }
 
@@ -466,7 +468,7 @@ aside.onebox.githubblob .source {
 // TOC active styling
 
 .d-toc-regular .d-toc .d-toc-item.d-toc-active a {
-  text-shadow: unset;
+  text-shadow: unset !important;
   font-weight: 500;
 }
 
@@ -492,7 +494,19 @@ pre code.lang-command {
 
 // Term definition table
 
-.terms table {
+.cooked .terms table,
+.d-editor-preview .terms table
+{
+  th {
+    font-style: italic;
+    color: $primary-high;
+    font-size: calc(1em - 1px);
+  }
+  
+  th:nth-child(1) {
+    white-space: nowrap;
+  }
+  
   td {
     vertical-align: top;
   }
@@ -515,7 +529,7 @@ pre code.lang-command {
 // Callout styles
 
 @mixin callout-icon {
-  color: $icon-gray;
+  color: $icon-gray-light;
   font-family: $fa-font;
   font-weight: 600;
   margin-right: 0.4em;
@@ -790,3 +804,17 @@ details.open > summary::after {
   color: $primary-high;
 }
 
+// Guild attr styles
+
+.guild-attr {
+  margin-left: 1em;
+}
+
+// Reduce the size of oddly large numbers in tabular summaries.
+
+.directory table td .number,
+.directory table td .time-read,
+.directory table th .number,
+.directory table th .time-read {
+  font-size: 1em;    
+}
