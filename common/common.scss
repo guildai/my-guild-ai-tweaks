@@ -413,14 +413,24 @@ ol.category-breadcrumb {
   margin-left: 20px;
 }
 
-// Onebox: GitHub link style
+// Onebox heading styles - format as normal text
 
-.onebox-body a {
-  font-size: 91%;
+aside.onebox .onebox-body h3, aside.onebox .onebox-body h4 {
+  font-size: 1em;
   font-weight: normal;
 }
 
-// Onebox styles
+// Onebox header - color and size
+
+aside.onebox.githubblob .source {
+  opacity: 0.8;
+  font-size: 91%;
+  a {
+    color: #666;
+  }
+}
+
+// Onebox borders and spacing
 
 aside.onebox {
   border: none;
@@ -450,15 +460,6 @@ pre.onebox {
       }
     }
   }
-}
-
-// Onebox: lighten GitHub icon
-
-aside.onebox.githubblob .source {
-  opacity: 0.8;
-   a {
-     color: #666;
-   }
 }
 
 // TOC active styling
@@ -687,9 +688,11 @@ img.avatar {
 a.ext::after {
   font-family: $fa-font;
   content: $fa-external-link-alt;
-  font-size: 0.7em;
+  font-size: 0.6em;
   margin-left: 0.3em;
   opacity: 0.7;
+  position: relative;
+  bottom: 1px;
 }
 
 // Directory list styles
@@ -823,3 +826,20 @@ details.open > summary::after {
 .directory table th .time-read {
   font-size: 1em;    
 }
+
+// Table col formatting
+
+.table-4 table td {
+  width: 25%;
+}
+
+.table-1-2-2-2 {
+  td:nth-child(1) {
+    width: 14.29%;
+  }
+  
+  td {
+    width: 28.57%;
+  }
+}
+
