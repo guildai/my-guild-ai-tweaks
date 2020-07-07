@@ -345,6 +345,14 @@ header.d-header {
   border: 1px solid #e9e9e9;
 }
 
+// Tone down list control buttons sizes.
+
+.list-controls .btn,
+.nav-pills > li > a,
+.list-controls .combo-box .combo-box-header {
+  font-size: 1em;
+}
+
 // Nudge pin icon to left
 
 .title-wrapper .topic-statuses {
@@ -585,7 +593,7 @@ pre code.lang-command {
 .hljs-name, 
 .hljs-params, 
 {
-  font-weight: normal;    
+  font-weight: normal !important;
 }
 
 // Image borders
@@ -667,7 +675,7 @@ img.avatar {
     }
     
     >*:first-child {
-      margin-left: -1.5em;
+      margin-left: -1em;
       margin-bottom: -0.8em;
       
       code {
