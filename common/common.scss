@@ -423,9 +423,67 @@ ol.category-breadcrumb {
 
 // Onebox heading styles - format as normal text
 
-aside.onebox .onebox-body h3, aside.onebox .onebox-body h4 {
-  font-size: 1em;
+aside.onebox .onebox-body h3,
+aside.onebox .onebox-body h4 {
+  font-size: 1.1em;
   font-weight: normal;
+}
+
+// Onebox GitHub issue styles (may incidentally apply to other classes)
+
+aside.onebox .onebox-body {
+    
+  // Hide huge icon
+  .github-icon-container {
+    display: none;
+  }
+  
+  // Hack to hide "opened" text
+  .github-info .date {
+    font-size: 0;
+    margin-right: 10px;
+    >* {
+      // Hard-code because we have nothing to scale - parent font size is 0.
+      font-size: 14px;
+    }
+  }
+  
+  // Sync user font size with date (see above)
+  .github-info .user {
+    font-size: 14px;
+  }
+  
+  // Center user image with text.
+  
+  .github-info .user img {
+    position: relative;
+    bottom: 2px;
+  }
+  
+  // Reduce prominence of issue
+  .discourse-local-date.cooked-date {
+    border: none;
+    color: $primary-high;
+    .d-icon {
+      color: $icon-gray;
+    }
+  }
+  
+  // Fix alignment of date and user.
+  .github-info {
+    align-items: baseline;
+  }
+  
+  // Label styles.
+  .labels {
+    margin-left: -3px;
+    font-size: 0.8em;
+    
+    span {
+      border-radius: 2px !important;
+      padding: 3px 7px !important;
+    }
+  }
 }
 
 // Onebox header - color and size
