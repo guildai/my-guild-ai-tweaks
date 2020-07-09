@@ -103,6 +103,11 @@ a, a:visited {
   }
 }
 
+// Fix top margin on first header for guild docs.
+.guild-docs h2:first-of-type {
+  margin-top: 0;
+}
+
 // Default svg icon color for icons applied with data-guild-icon
 
 .guild-icon .svg-icon {
