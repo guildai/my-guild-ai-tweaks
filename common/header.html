@@ -47,6 +47,9 @@
             //
             $elem.find("[data-guild-github-select]").each(function() {
                 const $wrapper = $(this);
+                const $ol = $wrapper.find("ol.start.lines");
+                if (!$ol.length) return;
+
                 const selectRange = parseSelectRange($wrapper.attr("data-guild-github-select"));
                 if (!selectRange) {
                     console.error("invalid range for data-guild-github-select: expected START:END");
@@ -55,29 +58,21 @@
                 const linesPattern = /L([\d-]+)$/;
                 const linesFrag = `L${selectRange.start}-L${selectRange.end}`;
 
-                // Wait on update to DOM to modify generated code.
-                $wrapper.on("DOMSubtreeModified", function(e) {
-                    
-                    // Use old.start.lines as proxy to know when we have lines to select.
-                    const $ol = $(e.target).find("ol.start.lines");
-                    if (!$ol.length) return;
-                    
-                    // Update GitHub links to reflect select range.
-                    $wrapper.find("a").each(function() {
-                        const $a = $(this);
-                        $a.attr("href", $a.attr("href").replace(linesPattern, linesFrag));
-                        $a.text($a.text().replace(linesPattern, linesFrag));
-                    });
-                    
-                    // Select specified lines.
-                    const startLine = parseInt($ol.attr("start"));
-                    const lines = $ol.children("li");
-                    for (var i = 0; i < lines.length; i++) {
-                        const line = i + startLine;
-                        const selected = line >= selectRange.start && line <= selectRange.end;
-                        $(lines[i]).toggleClass("selected", selected);
-                    }
+                // Update GitHub links to reflect select range.
+                $wrapper.find("a").each(function() {
+                    const $a = $(this);
+                    $a.attr("href", $a.attr("href").replace(linesPattern, linesFrag));
+                    $a.text($a.text().replace(linesPattern, linesFrag));
                 });
+                    
+                // Select specified lines.
+                const startLine = parseInt($ol.attr("start"));
+                const lines = $ol.children("li");
+                for (var i = 0; i < lines.length; i++) {
+                    const line = i + startLine;
+                    const selected = line >= selectRange.start && line <= selectRange.end;
+                    $(lines[i]).toggleClass("selected", selected);
+                }
             });
         
             // Guild docs processing
