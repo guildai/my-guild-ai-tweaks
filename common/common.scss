@@ -282,7 +282,6 @@ img.logo-small,
   
   td:nth-child(2) {
     color: $primary-high;
-    font-style: italic;
   }
 }
 
@@ -914,3 +913,8 @@ details.open > summary::after {
   }
 }
 
+// Special format for spans using horizontal ellipsis
+
+span.fa-ellipsis-h {
+  vertical-align: bottom;
+}
