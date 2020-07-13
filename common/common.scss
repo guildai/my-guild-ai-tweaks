@@ -131,6 +131,7 @@ a, a:visited {
 #topic-title a.edit-topic .d-icon {
   color: $icon-gray-light;
   font-size: 50%;
+  margin-bottom: 2px;
 }
 
 // Don't show suggestion to create new topic
@@ -300,6 +301,7 @@ header.d-header {
     color: rgba(255,255,255,0.8);
     font-size: 1.2em;
     transition: 0.25s ease;
+    text-transform: uppercase;
     &:hover {
       color: #fff;
     }
@@ -408,15 +410,6 @@ ol.category-breadcrumb {
   a {
     color: lighten($guild-link, 10%);
   }
-}
-
-// Hide some header links when menus are hidden to provide more room for topic title.
-// Ideally we'd just shrink the header buttons as needed to accommodate the longer
-// titles but haven't found the CSS/flexgrid fu for this.
-
-.hide-menus .header-buttons .features,
-.hide-menus .header-buttons .examples {
-  display: none;
 }
 
 // Left margin for header buttons. Need to select first button to apply
@@ -917,4 +910,14 @@ details.open > summary::after {
 
 span.fa-ellipsis-h {
   vertical-align: bottom;
+}
+
+// Get rid of black+bold for category hashtags.
+
+a.hashtag {
+  font-style: normal;
+  
+  &:visited, &:normal {
+    color: unset;
+  }
 }
