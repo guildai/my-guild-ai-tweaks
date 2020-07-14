@@ -98,3 +98,10 @@ header.d-header {
 .subcategory-list-item>footer {
   margin-left: -10px;
 }
+
+// Remove anchor links in mobile. They're not useful on touch 
+// devices and the add strange spacing.
+
+.d-toc-regular .d-toc-post-heading .d-toc-anchor-link {
+  display: none;
+}
