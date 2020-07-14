@@ -921,3 +921,12 @@ a.hashtag {
     color: unset;
   }
 }
+
+// Guild version for commands
+
+.guild-cmd-version {
+  font-style: italic;
+  color: $primary-high;
+  margin-top: 1.33em;
+  display: block;
+}
