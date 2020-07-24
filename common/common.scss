@@ -930,3 +930,9 @@ a.hashtag {
   margin-top: 1.33em;
   display: block;
 }
+
+// Extra spacing between PM glyph and message title
+
+.private-message-glyph-wrapper {
+  margin-right: 0.15em;
+}
