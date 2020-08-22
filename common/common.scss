@@ -505,6 +505,13 @@ aside.onebox {
   }
 }
 
+// Restore indent and border for onebox GitHub issues
+
+aside.onebox.githubissue {
+  border: 4px solid $primary-low;
+  padding: 12px 25px 12px 12px;
+}
+
 // Onebox code background consistent with other code
 
 pre.onebox {
