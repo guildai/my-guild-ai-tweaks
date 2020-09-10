@@ -543,9 +543,8 @@ pre.onebox {
 
 .command-line-prompt {
   position: absolute;
-  top: calc(0.5em - 0.5px);
+  top: calc(0.5em + 1px);
   left: 0.7em;
-  font-size: calc(1em + 1px);
   color: #b0b0b0;
 }
 
