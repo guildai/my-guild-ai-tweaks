@@ -942,3 +942,9 @@ a.hashtag {
 .private-message-glyph-wrapper {
   margin-right: 0.15em;
 }
+
+// Fix spacing for "Show trimmed content" button
+
+.elided summary {
+  padding: 2px 18px;
+}
