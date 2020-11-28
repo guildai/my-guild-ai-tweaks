@@ -1,12 +1,9 @@
 // Over page spacing.
 
-#main {
-  padding: 4.66em 0 1em;
-}
-
 #main-outlet {
   padding: 1.3em !important;
   width: calc(100% - 4.6em);
+  margin-top: 15px;
 }
 
 // Size header.
@@ -87,7 +84,7 @@ header.d-header {
 
 .category-list-item .subcategories-list td,
 .subcategory-list-item .subcategories-list td {
-  padding: 0;   
+  padding: 0;
 }
 
 // Remove strange 2px margin from category list.
@@ -105,12 +102,12 @@ header.d-header {
   margin-left: -10px;
 }
 
-.category-list-item>footer, 
+.category-list-item>footer,
 .subcategory-list-item>footer {
   margin-left: -10px;
 }
 
-// Remove anchor links in mobile. They're not useful on touch 
+// Remove anchor links in mobile. They're not useful on touch
 // devices and the add strange spacing.
 
 .d-toc-regular .d-toc-post-heading .d-toc-anchor-link {
